@@ -36,8 +36,8 @@ public class UserDaoJdbcImpl implements UserDao {
         public void dropUsersTable() {
             String SQL = "DROP TABLE users";
             try (Connection connection = Util.connection();
-                 PreparedStatement statement = connection.prepareStatement(SQL)){
-                statement.executeUpdate();
+                Statement statement = connection.createStatement()){
+                statement.executeUpdate(SQL);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -96,8 +96,8 @@ public class UserDaoJdbcImpl implements UserDao {
         public void cleanUsersTable() {
             String SQL = "DELETE FROM users";
             try (Connection connection = Util.connection();
-                 PreparedStatement statement = connection.prepareStatement(SQL)){
-                statement.executeUpdate();
+                Statement statement = connection.createStatement()){
+                statement.executeQuery(SQL);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
